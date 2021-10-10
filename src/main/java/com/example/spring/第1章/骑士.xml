@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="骑士" class="com.example.spring.第1章.勇敢的骑士">
+        <constructor-arg ref="探险任务"/>
+    </bean>
+
+    <bean id="探险任务" class="com.example.spring.第1章.屠龙探险任务">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+    <bean id="吟游诗人" class="com.example.spring.第1章.吟游诗人">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect ref="吟游诗人">
+            <aop:pointcut id="出发" expression="execution(* *.出发探险(..))"/>
+
+            <aop:before pointcut-ref="出发" method="探险之前唱"/>
+
+            <aop:after pointcut-ref="出发" method="探险之后唱"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
