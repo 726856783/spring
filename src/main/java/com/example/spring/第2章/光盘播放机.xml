@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.example.spring.第2章"/>
+
+    <bean id="音乐专辑" class="com.example.spring.第2章.音乐专辑"/>
+
+    <bean id="光盘播放机" class="com.example.spring.第2章.光盘播放机" c:光盘-ref="音乐专辑" c:_0-ref="音乐专辑"/>
+
+    <bean id="空白光盘" class="com.example.spring.第2章.空白光盘">
+        <constructor-arg value="标题"/>
+        <constructor-arg value="歌手"/>
+    </bean>
+
+    <bean id="空白光盘" class="com.example.spring.第2章.空白光盘" c:标题="标题" c:歌手="歌手" c:_0="标题" c:_1="歌手"/>
+
+    <bean id="空白光盘" class="com.example.spring.第2章.空白光盘">
+        <constructor-arg value="标题"/>
+        <constructor-arg value="歌手"/>
+        <constructor-arg>
+            <null/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="空白光盘" class="com.example.spring.第2章.空白光盘">
+        <constructor-arg value="标题"/>
+        <constructor-arg value="歌手"/>
+        <constructor-arg>
+            <list>
+                <value>歌词1</value>
+                <value>歌词2</value>
+                <value>歌词3</value>
+                <value>歌词4</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="光盘播放机" class="com.example.spring.第2章.光盘播放机">
+        <property name="光盘" ref="音乐专辑"/>
+    </bean>
+
+    <bean id="光盘播放机" class="com.example.spring.第2章.光盘播放机" p:光盘-ref="音乐专辑"/>
+
+    <bean id="空白光盘" class="com.example.spring.第2章.空白光盘"
+          p:标题="标题"
+          p:歌手="歌手">
+        <property name="标题" value="标题"/>
+        <property name="歌手" value="歌手"/>
+        <property name="磁道列表">
+            <list>
+                <value>歌词1</value>
+                <value>歌词2</value>
+                <value>歌词3</value>
+                <value>歌词4</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
