@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = 光盘播放机配置.class)
+@ContextConfiguration(classes = 光盘播放机测试.class)
 public class 光盘播放机测试 {
 
     @Autowired
