@@ -9,6 +9,10 @@ public class 空白光盘 implements 光盘 {
     private String 歌手;
     private List<String> 磁道列表;
 
+    public 空白光盘() {
+
+    }
+
     public 空白光盘(@Value("光盘.标题") String 标题, @Value("光盘.歌手") String 歌手) {
         this.标题 = 标题;
         this.歌手 = 歌手;

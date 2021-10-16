@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:component-scan base-package="com.example.spring.第4章"/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean class="com.example.spring.第4章.观众" id="观众"/>
+
+    <bean class="com.example.spring.第4章.观众定义环绕" id="观众定义环绕"/>
+
+    <aop:config>
+        <aop:aspect ref="观众">
+            <aop:before method="手机静音" pointcut="execution(* com.example.spring.第4章.表演.表演(..))"/>
+            <aop:before method="就座" pointcut="execution(* com.example.spring.第4章.表演.表演(..))"/>
+            <aop:after-returning method="鼓掌" pointcut="execution(* com.example.spring.第4章.表演.表演(..))"/>
+            <aop:after-throwing method="要求退款" pointcut="execution(* com.example.spring.第4章.表演.表演(..))"/>
+
+            <aop:pointcut id="表演" expression="execution(* com.example.spring.第4章.表演.表演(..))"/>
+            <aop:before method="手机静音" pointcut-ref="表演"/>
+            <aop:before method="就座" pointcut-ref="表演"/>
+            <aop:after-returning method="鼓掌" pointcut-ref="表演"/>
+            <aop:after-throwing method="要求退款" pointcut-ref="表演"/>
+
+        </aop:aspect>
+
+        <aop:aspect ref="观众定义环绕">
+            <aop:around method="看表演" pointcut-ref="表演"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
